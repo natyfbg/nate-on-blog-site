@@ -1,0 +1,13 @@
+@import './Variables.css';
+
+.footer {
+  background-color: var(--color-primary);
+  color: var(--color-white);
+  padding: var(--spacing-medium) 0;
+  text-align: center;
+}
+
+.footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
+}

@@ -1,0 +1,40 @@
+@import './Variables.css';
+
+.blog-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-gap: var(--spacing-large);
+}
+
+.blog-post {
+  background-color: var(--color-white);
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  padding: var(--spacing-medium);
+  transition: transform 0.3s ease;
+}
+
+.blog-post:hover {
+  transform: translateY(-5px);
+}
+
+.blog-title {
+  font-size: var(--font-size-large);
+  margin-bottom: var(--spacing-small);
+}
+
+.blog-title a {
+  color: var(--color-primary);
+  text-decoration: none;
+}
+
+.blog-excerpt {
+  color: var(--color-secondary);
+  margin-bottom: var(--spacing-base);
+}
+
+.blog-author,
+.blog-date {
+  color: var(--color-secondary);
+  font-size: var(--font-size-small);
+}

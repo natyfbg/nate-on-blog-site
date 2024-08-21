@@ -1,0 +1,46 @@
+@import './Variables.css';
+
+.header {
+  background-color: var(--color-primary);
+  padding: var(--spacing-base) 0;
+}
+
+.header-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo h1 {
+  color: var(--color-white);
+  font-size: var(--font-size-medium);
+  margin: 0;
+}
+
+.logo a {
+  text-decoration: none;
+}
+
+.navigation ul {
+  list-style-type: none;
+  display: flex;
+  margin: 0;
+  padding: 0;
+}
+
+.navigation li {
+  margin-left: var(--spacing-medium);
+}
+
+.navigation a {
+  color: var(--color-white);
+  text-decoration: none;
+  font-size: var(--font-size-base);
+  transition: color 0.3s ease;
+}
+
+.navigation a:hover {
+  color: var(--color-secondary);
+}

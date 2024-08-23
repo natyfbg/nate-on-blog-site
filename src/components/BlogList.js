@@ -10,6 +10,8 @@ function BlogList({ posts }) {
           <Link to={`/post/${post.id}`}>
             <h2 className="blog-title">{post.title}</h2>
           </Link>
+          <img src={post.imageUrl} alt={post.title} className="blog-image" />
+          <p className="blog-highlight">{post.highlight}</p>
           <p className="blog-excerpt">{post.excerpt}</p>
           <p className="blog-author">By {post.author}</p>
           <p className="blog-date">{post.date}</p>

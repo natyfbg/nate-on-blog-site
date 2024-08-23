@@ -1,11 +1,38 @@
+@import './Variables.css';
+
+h1 {
+  font-size: var(--font-size-large);
+  font-family: var(--main-font);
+}
+
 .home-container {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
+  max-width: 70%;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.home-header {
+  font-size: var(--font-size-large);
+  margin-bottom: var(--spacing-medium);
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  .home-container {
+    padding: var(--spacing-base);
   }
-  
+
   .home-header {
-    font-size: 2.5rem;
-    margin-bottom: 1.5rem;
-    text-align: center;
+    font-size: var(--font-size-medium);
   }
+}
+
+@media (max-width: 480px) {
+  .home-container {
+    padding: var(--spacing-small);
+  }
+
+  .home-header {
+    font-size: var(--font-size-base);
+  }
+}

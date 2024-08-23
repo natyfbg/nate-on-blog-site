@@ -1,9 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+
 /* Color Palette */
 :root {
-    --color-primary: #333;
+    --color-primary: #185839;
     --color-secondary: #555;
     --color-accent: #007bff;
-    --color-background: #f8f9fa;
+    --color-post: #bed8c5;
+    --color-background: #b6bdc2;
+    --main-font: 'Montserrat', sans-serif;
     --color-white: #fff;
     --color-black: #000;
   }

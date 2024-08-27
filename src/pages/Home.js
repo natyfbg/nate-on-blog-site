@@ -6,7 +6,7 @@ import { getPosts } from '../services/api';
 import '../styles/Home.css';
 
 function Home() {
-  const [posts, setPosts] = useState([]);
+  const [posts, setPosts] = useState([]); // Fixed typo here
 
   useEffect(() => {
     getPosts().then(data => setPosts(data));

@@ -1,31 +1,42 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
 
 /* Color Palette */
 :root {
-    --color-primary: #185839;
-    --color-secondary: #555;
-    --color-accent: #007bff;
-    --color-post: #bed8c5;
-    --color-background: #b6bdc2;
-    --main-font: 'Montserrat', sans-serif;
-    --color-white: #fff;
-    --color-black: #000;
-  }
-  
-  /* Typography */
-  :root {
-    --font-size-small: 0.9rem;
-    --font-size-base: 1rem;
-    --font-size-medium: 1.25rem;
-    --font-size-large: 1.5rem;
-    --font-family-primary: 'Arial', sans-serif;
-  }
-  
-  /* Spacing */
-  :root {
-    --spacing-small: 0.5rem;
-    --spacing-base: 1rem;
-    --spacing-medium: 1.5rem;
-    --spacing-large: 2rem;
-  }
+  /* Light mode colors */
+  --color-primary: #1c7c4d;
+  --color-secondary: #555;
+  --color-accent: #007bff;
+  --color-post: #bed8c5;
+  --color-background: #b6bdc2;
+  --color-white: #fff;
+  --color-black: #000;
+
+  /* Dark mode colors */
+  --color-dark-primary: #0d2e1e;
+  --color-dark-secondary: #2a2a2a;
+  --color-dark-accent: #1a91ff;
+  --color-dark-post: #1e3229;
+  --color-dark-background: #121212;
+  --color-dark-text: #e0e0e0;
+
+  /* Fonts */
+  --main-font: 'Montserrat', sans-serif;
+  --font-family-primary: 'Arial', sans-serif;
+}
+
+/* Typography */
+:root {
+  --font-size-small: 0.9rem;
+  --font-size-base: 1rem;
+  --font-size-medium: 1.25rem;
+  --font-size-large: 1.5rem;
+}
+
+/* Spacing */
+:root {
+  --spacing-small: 0.5rem;
+  --spacing-base: 1rem;
+  --spacing-medium: 1.5rem;
+  --spacing-large: 2rem;
+}

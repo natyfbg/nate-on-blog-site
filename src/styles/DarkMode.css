@@ -1,0 +1,29 @@
+body.dark-mode {
+    background-color: var(--color-dark-background);
+    color: var(--color-dark-text);
+  }
+  
+  .dark-mode .header {
+    background-color: var(--color-dark-primary);
+  }
+  
+  .dark-mode .logo h1,
+  .dark-mode .navigation a {
+    color: var(--color-dark-text);
+  }
+  
+  .dark-mode .blog-post {
+    background-color: var(--color-dark-secondary);
+    color: var(--color-dark-text);
+  }
+  
+  .dark-mode .blog-title a,
+  .dark-mode .blog-excerpt {
+    color: var(--color-dark-text);
+  }
+  
+  .dark-mode .toggle-mode {
+    color: var(--color-dark-text);
+  }
+  
+  /* Add more dark mode styles for other components as needed */

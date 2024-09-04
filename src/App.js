@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Home from './pages/Home';
 import BlogPost from './pages/BlogPost';
@@ -7,6 +7,13 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 
 function App() {
+  useEffect(() => {
+    const darkModePreference = localStorage.getItem('darkMode');
+    if (darkModePreference === 'true') {
+      document.body.classList.add('dark-mode');
+    }
+  }, []);
+
   return (
     <Router>
       <Routes>

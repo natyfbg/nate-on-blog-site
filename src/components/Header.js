@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import '../styles/Header.css';
+import '../styles/DarkMode.css';
 
 function Header() {
   const [isDarkMode, setIsDarkMode] = useState(false);
@@ -12,11 +13,20 @@ function Header() {
     if (loggedInUser) {
       setUser(JSON.parse(loggedInUser));
     }
+
+    // Check for dark mode preference
+    const darkModePreference = localStorage.getItem('darkMode');
+    if (darkModePreference === 'true') {
+      setIsDarkMode(true);
+      document.body.classList.add('dark-mode');
+    }
   }, []);
 
   const toggleDarkMode = () => {
-    setIsDarkMode(!isDarkMode);
+    const newDarkModeState = !isDarkMode;
+    setIsDarkMode(newDarkModeState);
     document.body.classList.toggle('dark-mode');
+    localStorage.setItem('darkMode', newDarkModeState);
   };
 
   const handleLogout = () => {

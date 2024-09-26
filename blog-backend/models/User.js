@@ -5,6 +5,10 @@ const UserSchema = new mongoose.Schema({
   password: { type: String, required: true },
   name: String,
   createdAt: { type: Date, default: Date.now },
+  isAdmin: {
+    type: Boolean,
+    default: false
+  }
 });
 
 module.exports = mongoose.model('User', UserSchema);

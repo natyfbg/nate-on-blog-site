@@ -4,6 +4,7 @@ const User = require('../models/User');
 module.exports = async (req, res, next) => {
   try {
     const token = req.header('Authorization').replace('Bearer ', '');
+    console.log('Extracted token:', token);
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
     const user = await User.findById(decoded.userId);
 
@@ -16,6 +17,7 @@ module.exports = async (req, res, next) => {
     req.userId = user._id;
     next();
   } catch (err) {
+    console.error('Authentication error:', err.message);
     res.status(401).json({ message: 'Please authenticate' });
   }
 };

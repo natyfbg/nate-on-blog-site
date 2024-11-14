@@ -9,9 +9,16 @@ function Header() {
   const navigate = useNavigate();
 
   useEffect(() => {
+    // Check for user data
     const loggedInUser = localStorage.getItem('user');
     if (loggedInUser) {
-      setUser(JSON.parse(loggedInUser));
+      try {
+        const userData = JSON.parse(loggedInUser);
+        setUser(userData);
+      } catch (error) {
+        console.error('Error parsing user data:', error);
+        localStorage.removeItem('user'); // Clear invalid data
+      }
     }
 
     // Check for dark mode preference
@@ -23,16 +30,29 @@ function Header() {
   }, []);
 
   const toggleDarkMode = () => {
-    const newDarkModeState = !isDarkMode;
-    setIsDarkMode(newDarkModeState);
-    document.body.classList.toggle('dark-mode');
-    localStorage.setItem('darkMode', newDarkModeState);
+    try {
+      const newDarkModeState = !isDarkMode;
+      setIsDarkMode(newDarkModeState);
+      document.body.classList.toggle('dark-mode');
+      localStorage.setItem('darkMode', newDarkModeState.toString());
+    } catch (error) {
+      console.error('Error toggling dark mode:', error);
+    }
   };
 
   const handleLogout = () => {
-    localStorage.removeItem('user');
-    setUser(null);
-    navigate('/');
+    try {
+      localStorage.removeItem('user');
+      localStorage.removeItem('token'); // Also remove the token
+      setUser(null);
+      navigate('/');
+    } catch (error) {
+      console.error('Error during logout:', error);
+      // Fallback logout attempt
+      localStorage.clear();
+      setUser(null);
+      navigate('/');
+    }
   };
 
   return (
@@ -46,18 +66,32 @@ function Header() {
         <nav className="navigation">
           <ul>
             <li><Link to="/">Home</Link></li>
-            {user && <li><Link to="/create">Create Post</Link></li>}
+            {user && (
+              <li>
+                <Link to="/create">Create Post</Link>
+              </li>
+            )}
             {!user && (
               <>
                 <li><Link to="/login">Login</Link></li>
                 <li><Link to="/register">Register</Link></li>
               </>
             )}
-            {user && <li><button onClick={handleLogout}>Logout</button></li>}
+            {user && (
+              <li>
+                <button 
+                  onClick={handleLogout}
+                  className="logout-button"
+                >
+                  Logout
+                </button>
+              </li>
+            )}
             <li>
               <button
                 className={`toggle-mode ${isDarkMode ? 'dark' : 'light'}`}
                 onClick={toggleDarkMode}
+                aria-label={isDarkMode ? 'Switch to light mode' : 'Switch to dark mode'}
               >
                 {isDarkMode ? '🌙' : '🌞'}
               </button>

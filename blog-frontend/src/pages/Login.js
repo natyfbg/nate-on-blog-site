@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { loginUser } from '../services/api';
+import { login } from '../services/api';
 import '../styles/Auth.css';
-import Header from '../components/Header';  // Add this import
+import Header from '../components/Header';
 
 function Login() {
   const [email, setEmail] = useState('');
@@ -12,8 +12,9 @@ function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const user = await loginUser(email, password);
-      localStorage.setItem('user', JSON.stringify(user));
+      const response = await login(email, password);
+      localStorage.setItem('token', response.data.token);
+      localStorage.setItem('user', JSON.stringify(response.data.user));
       navigate('/');
     } catch (error) {
       console.error('Login failed:', error);
@@ -23,8 +24,8 @@ function Login() {
 
   return (
     <div>
-      <Header />  {/* Add the Header component here */}
-      <div className="auth-container">  {/* Add this container */}
+      <Header />
+      <div className="auth-container">
         <div className="auth-form">
           <h2>Login</h2>
           <form onSubmit={handleSubmit}>

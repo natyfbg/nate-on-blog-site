@@ -1,69 +1,59 @@
-let mockPosts = [
-  {
-    id: 1,
-    title: "First Blog Post",
-    imageUrl: "https://example.com/image1.jpg",
-    highlight: "An exciting journey into web development",
-    excerpt: "This is the first post content...",
-    author: "John Doe",
-    date: "2023-05-01",
-    content: "Full content of the first blog post..."
-  },
-  {
-    id: 2,
-    title: "Second Blog Post",
-    imageUrl: "https://example.com/image2.jpg",
-    highlight: "Exploring the latest React features",
-    excerpt: "This is the second post content...",
-    author: "Jane Smith",
-    date: "2023-05-05",
-    content: "Full content of the second blog post..."
-  },
-  // Add more mock posts as needed
-];
+import axios from 'axios';
 
-let users = [
-  { id: 1, email: 'user1@example.com', password: 'password1' },
-  { id: 2, email: 'user2@example.com', password: 'password2' },
-];
+const API_URL = 'http://localhost:5000/api';  // Adjust this if your backend URL is different
 
-export const registerUser = (email, password) => {
-  const newUser = { id: users.length + 1, email, password };
-  users.push(newUser);
-  return Promise.resolve(newUser);
+// Create an axios instance
+const api = axios.create({
+  baseURL: API_URL,
+  headers: {
+    'Content-Type': 'application/json',
+  },
+});
+
+// Add a request interceptor to include the auth token in requests
+api.interceptors.request.use(
+  (config) => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      config.headers['Authorization'] = `Bearer ${token}`;
+    }
+    return config;
+  },
+  (error) => Promise.reject(error)
+);
+
+// Authentication
+
+export const register = (name, email, password) => {
+  return api.post('/auth/register', { name, email, password });
 };
 
-export const getPosts = () => {
-  return Promise.resolve(mockPosts);
+export const login = (email, password) => {
+  return api.post('/auth/login', { email, password });
+};
+
+// Posts
+
+export const getAllPosts = () => {
+  return api.get('/posts');
 };
 
 export const getPost = (id) => {
-  const post = mockPosts.find(p => p.id === parseInt(id));
-  return Promise.resolve(post);
+  return api.get(`/posts/${id}`);
 };
 
-export const createPost = (newPost) => {
-  const post = {
-    id: mockPosts.length + 1,
-    ...newPost,
-    date: new Date().toISOString().split('T')[0],
-    author: "Current User",
-    excerpt: newPost.content.substring(0, 100) + "..."
-  };
-  mockPosts.push(post);
-  return Promise.resolve(post);
+export const createPost = (postData) => {
+  return api.post('/posts', postData);
+};
+
+export const updatePost = (id, postData) => {
+  return api.put(`/posts/${id}`, postData);
 };
 
 export const deletePost = (id) => {
-  mockPosts = mockPosts.filter(post => post.id !== parseInt(id));
-  return Promise.resolve();
+  return api.delete(`/posts/${id}`);
 };
 
-export const loginUser = (email, password) => {
-  const user = users.find(u => u.email === email && u.password === password);
-  if (user) {
-    return Promise.resolve(user);
-  } else {
-    return Promise.reject('Invalid credentials');
-  }
-};
+// You can add more API calls here as needed
+
+export default api;

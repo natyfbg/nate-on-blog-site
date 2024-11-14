@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { registerUser } from '../services/api';
+import { register } from '../services/api';
 import '../styles/Auth.css';
-import Header from '../components/Header';  // Add this import
+import Header from '../components/Header';
 
 function Register() {
+  const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
@@ -12,7 +13,7 @@ function Register() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await registerUser(email, password);
+      await register(name, email, password);
       navigate('/login');
     } catch (error) {
       console.error('Registration failed:', error);
@@ -22,11 +23,18 @@ function Register() {
 
   return (
     <div>
-      <Header />  {/* Add the Header component here */}
-      <div className="auth-container">  {/* Add this container */}
+      <Header />
+      <div className="auth-container">
         <div className="auth-form">
           <h2>Register</h2>
           <form onSubmit={handleSubmit}>
+            <input
+              type="text"
+              placeholder="Name"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              required
+            />
             <input
               type="email"
               placeholder="Email"

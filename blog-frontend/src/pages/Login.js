@@ -13,12 +13,22 @@ function Login() {
     e.preventDefault();
     try {
       const response = await login(email, password);
+      console.log('Login response:', response); // For debugging
+      
+      // Store token
       localStorage.setItem('token', response.data.token);
-      localStorage.setItem('user', JSON.stringify(response.data.user));
+      
+      // Create a user object with necessary information
+      const userData = {
+        id: response.data.userId,
+        email: email,
+        name: response.data.name || email.split('@')[0], // Use email username if name not provided
+      };
+      
+      localStorage.setItem('user', JSON.stringify(userData));
       navigate('/');
     } catch (error) {
       console.error('Login failed:', error);
-      // Handle error (e.g., show error message)
     }
   };
 

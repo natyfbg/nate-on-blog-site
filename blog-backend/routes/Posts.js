@@ -16,19 +16,31 @@ router.get('/', async (req, res) => {
 
 // Create a new post
 router.post('/', auth, async (req, res) => {
-  const post = new Post({
-    title: req.body.title,
-    content: req.body.content,
-    author: req.userId,
-    imageUrl: req.body.imageUrl,
-    highlight: req.body.highlight,
-  });
-
   try {
+    console.log('Creating post with data:', {
+      title: req.body.title,
+      hasContent: !!req.body.content,
+      hasImage: !!req.body.imageUrl,
+      userId: req.userId
+    });
+
+    const post = new Post({
+      title: req.body.title,
+      content: req.body.content,
+      author: req.userId,
+      imageUrl: req.body.imageUrl,
+      highlight: req.body.highlight,
+    });
+
     const newPost = await post.save();
+    console.log('Post created successfully:', newPost);
     res.status(201).json(newPost);
   } catch (err) {
-    res.status(400).json({ message: err.message });
+    console.error('Error creating post:', err);
+    res.status(400).json({ 
+      message: err.message,
+      details: err.errors || 'Unknown error'
+    });
   }
 });
 

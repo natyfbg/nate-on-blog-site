@@ -15,9 +15,10 @@ function Header() {
       try {
         const userData = JSON.parse(loggedInUser);
         setUser(userData);
+        console.log('User data loaded:', userData); // For debugging
       } catch (error) {
         console.error('Error parsing user data:', error);
-        localStorage.removeItem('user'); // Clear invalid data
+        localStorage.removeItem('user');
       }
     }
 
@@ -43,12 +44,11 @@ function Header() {
   const handleLogout = () => {
     try {
       localStorage.removeItem('user');
-      localStorage.removeItem('token'); // Also remove the token
+      localStorage.removeItem('token');
       setUser(null);
       navigate('/');
     } catch (error) {
       console.error('Error during logout:', error);
-      // Fallback logout attempt
       localStorage.clear();
       setUser(null);
       navigate('/');
@@ -67,9 +67,12 @@ function Header() {
           <ul>
             <li><Link to="/">Home</Link></li>
             {user && (
-              <li>
-                <Link to="/create">Create Post</Link>
-              </li>
+              <>
+                <li><Link to="/create">Create Post</Link></li>
+                <li className="user-info">
+                  Welcome, {user.name || user.email}
+                </li>
+              </>
             )}
             {!user && (
               <>

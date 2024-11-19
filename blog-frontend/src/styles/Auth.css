@@ -1,38 +1,93 @@
+.auth-container {
+  max-width: 400px;
+  margin: 40px auto;
+  padding: 20px;
+}
+
 .auth-form {
-    max-width: 300px;
-    margin: 0 auto;
-    padding: 20px;
-  }
-  
-  .auth-form input {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 10px;
-  }
-  
-  .auth-form button {
-    width: 100%;
-    padding: 10px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    cursor: pointer;
-  }
-  
-  .auth-form button:hover {
-    background-color: #0056b3;
-  }
+  background-color: white;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: flex;          /* Add this */
+  flex-direction: column; /* Add this */
+  align-items: center;    /* Add this */
+}
+
+.auth-form form {
+  width: 90%;            /* Add this - adjust percentage as needed */
+  max-width: 300px;      /* Add this - adjust pixel value as needed */
+}
+
+.auth-form h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: var(--color-primary);
+  width: 100%;          /* Add this */
+}
+
+.auth-form input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: var(--font-size-base);
+  box-sizing: border-box;  /* Add this */
+}
+
+.auth-form button {
+  width: 100%;
+  padding: 12px;
+  background-color: var(--color-primary);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: var(--font-size-base);
+  transition: background-color 0.3s ease;
+}
+
+.auth-form button:hover {
+  background-color: var(--color-secondary);
+}
+
+/* Dark mode styles */
+.dark-mode .auth-form {
+  background-color: var(--color-secondary);
+}
+
+.dark-mode .auth-form h2 {
+  color: var(--color-white);
+}
+
+.dark-mode .auth-form input {
+  background-color: #333;
+  color: var(--color-white);
+  border-color: #444;
+}
+
+.dark-mode .auth-form input::placeholder {
+  color: #888;
+}
+
+/* Error message styling */
+.error-message {
+  color: #dc3545;
+  text-align: center;
+  margin-bottom: 15px;
+  padding: 10px;
+  background-color: #f8d7da;
+  border-radius: 4px;
+}
+
+/* Responsive design */
+@media (max-width: 480px) {
   .auth-container {
-    max-width: 400px;
-    margin: 40px auto;
-    padding: 20px;
+    margin: 20px;
   }
   
   .auth-form {
-    background-color: #f9f9f9;
-    border-radius: 8px;
     padding: 20px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
   }
-  
-  /* ... rest of your existing styles ... */
+}

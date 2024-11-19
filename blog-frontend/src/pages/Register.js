@@ -8,16 +8,19 @@ function Register() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setError('');
     try {
       await register(name, email, password);
-      navigate('/login');
+      console.log('Registration successful');
+      navigate('/login'); // Redirect to login page after successful registration
     } catch (error) {
       console.error('Registration failed:', error);
-      // Handle error (e.g., show error message)
+      setError(error.response?.data?.message || 'Registration failed');
     }
   };
 
@@ -27,6 +30,7 @@ function Register() {
       <div className="auth-container">
         <div className="auth-form">
           <h2>Register</h2>
+          {error && <div className="error-message">{error}</div>}
           <form onSubmit={handleSubmit}>
             <input
               type="text"

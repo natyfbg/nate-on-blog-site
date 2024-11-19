@@ -69,6 +69,24 @@
   color: var(--color-white);
 }
 
+.user-info {
+  color: var(--color-white);
+  padding: 0 var(--spacing-medium);
+}
+
+.navigation .logout-button {
+  background: none;
+  border: none;
+  color: var(--color-white);
+  cursor: pointer;
+  font-size: var(--font-size-base);
+  padding: 0;
+}
+
+.navigation .logout-button:hover {
+  color: var(--color-secondary);
+}
+
 @media (max-width: 768px) {
   .header-content {
     padding: 0 var(--spacing-base);
